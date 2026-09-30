@@ -14,7 +14,7 @@ public record ProductResponse(
                 product.getId(),
                 product.getName(),
                 product.getPrice(),
-                product.getStock(),
+                product.getStock().value(),
                 product.getStatus().name()
         );
     }

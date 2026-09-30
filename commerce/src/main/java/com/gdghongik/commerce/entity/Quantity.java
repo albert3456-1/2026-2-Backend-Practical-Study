@@ -13,6 +13,9 @@ public class Quantity {
     private int value;
 
     private Quantity(int value) {
+        if(value<1){
+            throw new IllegalArgumentException("수량은 1개 이상이어야 합니다.");
+        }
         // TODO[W2-3]: 수량이 1개 미만이면 IllegalArgumentException 을 던지세요.
         this.value = value;
     }

@@ -26,7 +26,7 @@ public class Product {
 
     private long price;
 
-    private int stock;
+    private Quantity stock;
 
     @Enumerated(EnumType.STRING)
     private SellingStatus status;
@@ -34,7 +34,7 @@ public class Product {
     public Product(String name, long price, int stock) {
         this.name = name;
         this.price = price;
-        this.stock = stock;
+        this.stock = Quantity.of(stock);
         this.status = SellingStatus.SELLING;
     }
 
@@ -54,13 +54,15 @@ public class Product {
         if (this.status != SellingStatus.SELLING) {
             throw new IllegalStateException("판매 중인 상품이 아닙니다.");
         }
-        if (this.stock < quantity) {
+        if (this.stock.value() < quantity) {
             throw new IllegalStateException("재고가 부족합니다. 남은 재고=" + this.stock);
         }
 
-        this.stock -= quantity;
+        int origin_stock=this.stock.value();
 
-        if (this.stock == 0) {
+        this.stock=Quantity.of(origin_stock-quantity);
+
+        if (this.stock.value() == 0) {
             this.status = SellingStatus.SOLD_OUT;
         }
     }

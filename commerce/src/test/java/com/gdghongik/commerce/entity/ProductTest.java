@@ -23,7 +23,7 @@ class ProductTest {
         product.decreaseStock(3);
 
         // then, 10에서 3을 빼면 7이겠죠?
-        assertThat(product.getStock()).isEqualTo(7);
+        assertThat(product.getStock()).isEqualTo(Quantity.of(7));
     }
 
     @Test
@@ -73,7 +73,7 @@ class ProductTest {
         product.decreaseStock(1);
 
         // then, 재고가 1개뿐인 상품을 1개 구매할 때 재고가 0이 되고 SOLD_OUT 상태로 적절히 변경하는지 확인합니다.
-        assertThat(product.getStock()).isZero();
+        assertThat(product.getStock().value()).isZero();
         assertThat(product.getStatus()).isEqualTo(SellingStatus.SOLD_OUT);
     }
 }
