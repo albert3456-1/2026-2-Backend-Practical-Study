@@ -25,7 +25,9 @@ public class ProductRepositoryAdapter implements ProductRepository {
 
     @Override
     public Optional<Product> findByIdWithLock(Long id) {
-        return jpaRepository.findById(id);
+        // TODO[W4-3]: ProductJpaRepository의 잠금 조회 메서드에 위임하세요.
+        //return jpaRepository.findByIdWithLock(id);
+        throw new UnsupportedOperationException("TODO[W4-3]");
     }
 
     @Override
